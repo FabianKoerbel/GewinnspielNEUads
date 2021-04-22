@@ -31,7 +31,7 @@ namespace Gewinnspiel.Forms
         #region Methoden
         internal void einlesenTeilnehmer()
         {
-            foreach(Teilnehmer t in frmLogin.frmLog.TeilnehmerListe)
+            foreach (Teilnehmer t in frmLogin.frmLog.TeilnehmerListe)
             {
                 lvItem = new ListViewItem(t.TeilnehmerID.ToString());
                 lvItem.SubItems.Add(t.Vorname);
@@ -49,6 +49,45 @@ namespace Gewinnspiel.Forms
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
         }
+
+        private void hinzufuegenTeilnehmerGewinnspiel()
+        {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Bitte wählen Sie einen Teilnehmer aus!");
+                return;
+            }
+            lvItem = listView1.SelectedItems[0];
+            if (lvItem.SubItems[7].Text.Equals("True"))
+            {
+                MessageBox.Show("Dieser Teilnehmer ist deaktiviert und kann daher nicht hinzugefügt werden!");
+                return;
+            }
+            foreach (Teilnehmer t in frmLogin.frmLog.TeilnehmerListe)
+            {
+                if (t.TeilnehmerID == Convert.ToInt32(lvItem.SubItems[0].Text))
+                {
+                    bool gefunden = false; //Teilnehmer in der Gewinnspielliste
+                    foreach (Teilnehmer teil in frmLogin.frmLog.frmAd.spielaktuell.ListeTeilnehmer)
+                    {
+                        if (teil.TeilnehmerID == t.TeilnehmerID)
+                            gefunden = true;
+                    }
+                    if (gefunden)
+                    {
+                        MessageBox.Show("Dieser Teilnehmer ist bereits Teilnehmer in diesem Gewinnspiel!");
+                        break;
+                    }
+                    else // Teilnehmer noch nicht vorhanden in diesem Gewinnspiel --> hinzufügen
+                    {
+                        frmLogin.frmLog.frmAd.spielaktuell.ListeTeilnehmer.Add(t);
+                        frmLogin.frmLog.frmAd.einlesenTeilnehmer();
+                        break;
+                    }
+                }
+            }
+        }
+
         #endregion
 
         private void teilnehmerHinzufügenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,7 +101,7 @@ namespace Gewinnspiel.Forms
 
         private void teilnehmerBearbeitenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count==0)
+            if (listView1.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Bitte wählen Sie einen Teilnehmer aus!");
                 return;
@@ -80,6 +119,48 @@ namespace Gewinnspiel.Forms
             frmTeilAdd.cbDeaktiviert.Checked = Convert.ToBoolean(lvItem.SubItems[7].Text);
             frmTeilAdd.ShowDialog();
             einlesenTeilnehmer();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            hinzufuegenTeilnehmerGewinnspiel();
+        }
+
+        private void teilnehmerDeaktivierenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Bitte wählen Sie einen Teilnehmer aus!");
+                return;
+            }
+            DialogResult dr = MessageBox.Show("Wollen Sie diesen Teilnehmer wirklich de/aktivieren?", "ACHTUNG:", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                lvItem = listView1.SelectedItems[0];
+                if (lvItem.SubItems[6].Text.Equals("True"))
+                {
+                    MessageBox.Show("Admins können nicht deaktiviert werden, sie können max. zu einem Teilnehmer herabgestuft werden!");
+                    return;
+                }
+                foreach (Teilnehmer t in frmLogin.frmLog.TeilnehmerListe)
+                {
+                    if (t.TeilnehmerID == Convert.ToInt32(lvItem.SubItems[0].Text))
+                    {
+                        if (t.Inaktiv)
+                            t.Inaktiv = false;
+                        else
+                            t.Inaktiv = true;
+                        break;
+                    }
+                }
+                einlesenTeilnehmer();
+                frmLogin.frmLog.serialisierenTeiln();
+            }
+        }
+
+        private void teilnehmerZumGewinnspielHinzufügenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hinzufuegenTeilnehmerGewinnspiel();
         }
     }
 }

@@ -20,6 +20,8 @@ namespace Gewinnspiel.Forms
 
         #region Variablen
         ListViewItem lvItem;
+        ListViewItem lvItemT;
+        internal Spiel spielaktuell;
         #endregion
 
         private void frmAdmin_Load(object sender, EventArgs e)
@@ -37,6 +39,43 @@ namespace Gewinnspiel.Forms
             frmTeilnehmerListe frmTeilList = new frmTeilnehmerListe();
             frmTeilList.Text = "Liste aller registrierten Teilnehmer";
             frmTeilList.ShowDialog();
+        }
+
+        internal void einlesenTeilnehmer()
+        {
+            lvTeilnehmer.Items.Clear();
+            foreach (Teilnehmer t in spielaktuell.ListeTeilnehmer)
+            {
+                lvItemT = new ListViewItem(t.TeilnehmerID.ToString());
+                lvItemT.SubItems.Add(t.Nachname);
+                lvItemT.SubItems.Add(t.Vorname);
+                lvItemT.SubItems.Add(t.Email);
+                lvItemT.SubItems.Add(t.Geschlecht.ToString());
+                lvItemT.SubItems.Add(t.GebDatum.ToShortDateString());
+                lvItemT.SubItems.Add(t.Admin.ToString());
+                lvItemT.SubItems.Add(t.Inaktiv.ToString());
+                lvTeilnehmer.Items.Add(lvItemT);
+            }
+        }
+
+        private void hinzufuegenTeilnehmer() //einem Gewinnspiel
+        {
+            if (rbAbgeschlossen.Checked)
+            {
+                MessageBox.Show("Einem abgeschlossenen Gewinnspiel können keine Teilnehmer mehr hinzugefügt werden!");
+                return;
+            }
+            if (lvGewinnspiele.SelectedItems.Count==0)
+            {
+                MessageBox.Show("Bitte wählen Sie ein Gewinnspiel aus!");
+                return;
+            }
+            //Gewinnspiel ist bereits durch lvGewinnspiel_Click ausgewählt und
+            // in spielAktuell gespeichert
+            //lvItem = lvGewinnspiele.SelectedItems[0];
+            teilnehmerListe();
+            frmLogin.frmLog.serialisierenSpiel();
+
         }
 
         private void einlesenGewinnspiele()
@@ -182,6 +221,52 @@ namespace Gewinnspiel.Forms
         private void hinzufügenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void lvGewinnspiele_Click(object sender, EventArgs e)
+        {
+            lvTeilnehmer.Items.Clear();
+            if (lvGewinnspiele.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Bitte wählen Sie ein Gewinnspiel aus!");
+                return;
+            }
+            lvItem = lvGewinnspiele.SelectedItems[0];
+            foreach (Spiel s in frmLogin.frmLog.gewinnspielListe)
+            {
+                if (s.SpielID == Convert.ToInt32(lvItem.SubItems[1].Text))
+                {
+                    spielaktuell = s;
+                    foreach (Teilnehmer t in s.ListeTeilnehmer)
+                    {
+                        lvItemT = new ListViewItem(t.TeilnehmerID.ToString());
+                        lvItemT.SubItems.Add(t.Nachname);
+                        lvItemT.SubItems.Add(t.Vorname);
+                        lvItemT.SubItems.Add(t.Email);
+                        lvItemT.SubItems.Add(t.Geschlecht.ToString());
+                        lvItemT.SubItems.Add(t.GebDatum.ToShortDateString());
+                        lvItemT.SubItems.Add(t.Admin.ToString());
+                        lvItemT.SubItems.Add(t.inaktiv.ToString());
+                        lvTeilnehmer.Items.Add(lvItemT);
+                    }
+                    break;
+                }
+            }
+        }
+
+        private void einemGewinnpielHinzufügenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hinzufuegenTeilnehmer();
+        }
+
+        private void teilnehmerHinzufügenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hinzufuegenTeilnehmer();
         }
     }
 }

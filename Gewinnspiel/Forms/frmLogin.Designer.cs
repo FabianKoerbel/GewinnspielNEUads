@@ -44,7 +44,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(255, 26);
             this.txtEmail.TabIndex = 0;
-            this.txtEmail.Text = "eva.graf@gmx.at";
+            this.txtEmail.Text = "fabian@koerbel.at";
             // 
             // txtPasswort
             // 
@@ -54,7 +54,7 @@
             this.txtPasswort.PasswordChar = '*';
             this.txtPasswort.Size = new System.Drawing.Size(216, 26);
             this.txtPasswort.TabIndex = 1;
-            this.txtPasswort.Text = "2704";
+            this.txtPasswort.Text = "1234";
             this.txtPasswort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPasswort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPasswort_KeyDown);
             // 

@@ -89,6 +89,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(1439, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // gewinnspielToolStripMenuItem
             // 
@@ -158,6 +159,7 @@
             this.einemGewinnpielHinzufügenToolStripMenuItem.Name = "einemGewinnpielHinzufügenToolStripMenuItem";
             this.einemGewinnpielHinzufügenToolStripMenuItem.Size = new System.Drawing.Size(287, 26);
             this.einemGewinnpielHinzufügenToolStripMenuItem.Text = "einem Gewinnpiel hinzufügen";
+            this.einemGewinnpielHinzufügenToolStripMenuItem.Click += new System.EventHandler(this.einemGewinnpielHinzufügenToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
@@ -192,6 +194,7 @@
             this.lvGewinnspiele.TabIndex = 1;
             this.lvGewinnspiele.UseCompatibleStateImageBehavior = false;
             this.lvGewinnspiele.View = System.Windows.Forms.View.Details;
+            this.lvGewinnspiele.Click += new System.EventHandler(this.lvGewinnspiele_Click);
             // 
             // columnHeader10
             // 
@@ -238,7 +241,7 @@
             this.bearbeitenToolStripMenuItem1,
             this.teilnehmerHinzufügenToolStripMenuItem});
             this.cmsGewinnspiel.Name = "cmsGewinnspiel";
-            this.cmsGewinnspiel.Size = new System.Drawing.Size(241, 82);
+            this.cmsGewinnspiel.Size = new System.Drawing.Size(241, 104);
             // 
             // hinzufügenToolStripMenuItem2
             // 
@@ -259,6 +262,7 @@
             this.teilnehmerHinzufügenToolStripMenuItem.Name = "teilnehmerHinzufügenToolStripMenuItem";
             this.teilnehmerHinzufügenToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.teilnehmerHinzufügenToolStripMenuItem.Text = "Teilnehmer Hinzufügen";
+            this.teilnehmerHinzufügenToolStripMenuItem.Click += new System.EventHandler(this.teilnehmerHinzufügenToolStripMenuItem_Click);
             // 
             // lvTeilnehmer
             // 

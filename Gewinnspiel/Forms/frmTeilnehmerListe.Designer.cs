@@ -69,6 +69,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -141,12 +142,14 @@
             this.teilnehmerDeaktivierenToolStripMenuItem.Name = "teilnehmerDeaktivierenToolStripMenuItem";
             this.teilnehmerDeaktivierenToolStripMenuItem.Size = new System.Drawing.Size(361, 26);
             this.teilnehmerDeaktivierenToolStripMenuItem.Text = "Teilnehmer de/aktivieren";
+            this.teilnehmerDeaktivierenToolStripMenuItem.Click += new System.EventHandler(this.teilnehmerDeaktivierenToolStripMenuItem_Click);
             // 
             // teilnehmerZumGewinnspielHinzufügenToolStripMenuItem
             // 
             this.teilnehmerZumGewinnspielHinzufügenToolStripMenuItem.Name = "teilnehmerZumGewinnspielHinzufügenToolStripMenuItem";
             this.teilnehmerZumGewinnspielHinzufügenToolStripMenuItem.Size = new System.Drawing.Size(361, 26);
             this.teilnehmerZumGewinnspielHinzufügenToolStripMenuItem.Text = "Teilnehmer zum Gewinnspiel hinzufügen";
+            this.teilnehmerZumGewinnspielHinzufügenToolStripMenuItem.Click += new System.EventHandler(this.teilnehmerZumGewinnspielHinzufügenToolStripMenuItem_Click);
             // 
             // frmTeilnehmerListe
             // 
