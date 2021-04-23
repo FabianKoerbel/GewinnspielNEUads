@@ -69,6 +69,7 @@
             this.rbAktive = new System.Windows.Forms.RadioButton();
             this.rbAbgeschlossen = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.alleTeilnehmerEntfernenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.cmsGewinnspiel.SuspendLayout();
             this.cmsTeilnehmer.SuspendLayout();
@@ -241,7 +242,7 @@
             this.bearbeitenToolStripMenuItem1,
             this.teilnehmerHinzufügenToolStripMenuItem});
             this.cmsGewinnspiel.Name = "cmsGewinnspiel";
-            this.cmsGewinnspiel.Size = new System.Drawing.Size(241, 104);
+            this.cmsGewinnspiel.Size = new System.Drawing.Size(241, 82);
             // 
             // hinzufügenToolStripMenuItem2
             // 
@@ -332,15 +333,16 @@
             // 
             this.cmsTeilnehmer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmsTeilnehmer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.teilnehmerEntfernenToolStripMenuItem});
+            this.teilnehmerEntfernenToolStripMenuItem,
+            this.alleTeilnehmerEntfernenToolStripMenuItem});
             this.cmsTeilnehmer.Name = "cmsTeilnehmer";
-            this.cmsTeilnehmer.Size = new System.Drawing.Size(228, 30);
+            this.cmsTeilnehmer.Size = new System.Drawing.Size(279, 78);
             // 
             // teilnehmerEntfernenToolStripMenuItem
             // 
             this.teilnehmerEntfernenToolStripMenuItem.Name = "teilnehmerEntfernenToolStripMenuItem";
-            this.teilnehmerEntfernenToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
-            this.teilnehmerEntfernenToolStripMenuItem.Text = "Teilnehmer entfernen";
+            this.teilnehmerEntfernenToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
+            this.teilnehmerEntfernenToolStripMenuItem.Text = "Diesen Teilnehmer entfernen";
             // 
             // groupBox1
             // 
@@ -387,6 +389,13 @@
             this.label1.Size = new System.Drawing.Size(435, 24);
             this.label1.TabIndex = 4;
             this.label1.Text = "Teilnehmer des ausgewählten Gewinnspieles";
+            // 
+            // alleTeilnehmerEntfernenToolStripMenuItem
+            // 
+            this.alleTeilnehmerEntfernenToolStripMenuItem.Name = "alleTeilnehmerEntfernenToolStripMenuItem";
+            this.alleTeilnehmerEntfernenToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
+            this.alleTeilnehmerEntfernenToolStripMenuItem.Text = "Alle Teilnehmer entfernen";
+            this.alleTeilnehmerEntfernenToolStripMenuItem.Click += new System.EventHandler(this.alleTeilnehmerEntfernenToolStripMenuItem_Click);
             // 
             // frmAdmin
             // 
@@ -458,5 +467,6 @@
         private System.Windows.Forms.ContextMenuStrip cmsTeilnehmer;
         private System.Windows.Forms.ToolStripMenuItem teilnehmerEntfernenToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ToolStripMenuItem alleTeilnehmerEntfernenToolStripMenuItem;
     }
 }

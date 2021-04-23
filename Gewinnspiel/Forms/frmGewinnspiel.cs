@@ -28,7 +28,7 @@ namespace Gewinnspiel.Forms
             if(this.Text.Equals("Gewinnspiel hinzufügen"))
             {
                 bildpfad = Application.StartupPath + "\\img\\default.jpg";
-                pictureBox1.Image = Image.FromFile(bildpfad);
+                //pictureBox1.Image = Image.FromFile(bildpfad);
                 txtBildpfad.Text = bildpfad;
             }
         }

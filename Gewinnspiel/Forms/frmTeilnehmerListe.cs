@@ -67,6 +67,7 @@ namespace Gewinnspiel.Forms
             {
                 if (t.TeilnehmerID == Convert.ToInt32(lvItem.SubItems[0].Text))
                 {
+                    t.AnzahlSpiele++;
                     bool gefunden = false; //Teilnehmer in der Gewinnspielliste
                     foreach (Teilnehmer teil in frmLogin.frmLog.frmAd.spielaktuell.ListeTeilnehmer)
                     {

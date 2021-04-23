@@ -268,5 +268,16 @@ namespace Gewinnspiel.Forms
         {
             hinzufuegenTeilnehmer();
         }
+
+        private void alleTeilnehmerEntfernenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < spielaktuell.ListeTeilnehmer.Count; i++)
+            {
+                spielaktuell.ListeTeilnehmer[i].AnzahlSpiele--;
+            }
+            spielaktuell.ListeTeilnehmer.Clear();
+            lvTeilnehmer.Items.Clear();
+            frmLogin.frmLog.serialisierenSpiel();
+        }
     }
 }
